@@ -15,3 +15,8 @@ AWS_SECRET_KEY='adsafsasfdafs'
 AWS_REGION='ap-south-1'
 AWS_S3_BUCKET='streamingappservice'
 ```
+
+
+
+jenkins - http://13.233.223.118:8080/
+HeroVired
