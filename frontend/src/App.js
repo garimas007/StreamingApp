@@ -6,7 +6,7 @@ function App() {
     <div className="App">
     <h1>HotPrimeFlix</h1>
      <video id="videoPlayer" width="70%" controls muted="muted" autoplay>
-            <source src="http://localhost:3002/streaming" type="video/mp4" />
+            <source src="http://34.204.24.133:3002/streaming" type="video/mp4" />
         </video>
     </div>
   );

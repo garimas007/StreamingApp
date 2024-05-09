@@ -35,3 +35,6 @@ npm start
 ```
 * you can get the sample output has mentioned below
 ![alt text](pics/image.png)
+
+
+
