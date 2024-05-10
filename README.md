@@ -74,8 +74,10 @@ stage('build backend') {
  }
 ```
 4. Deploy the docker image in EC2 instance, you can get the output as mentioned below.
+
 Frontend
 ![alt text](pics/image2.png)
+
 Backend
 ![alt text](pics/image-1.png)
 
