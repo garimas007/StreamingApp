@@ -2,9 +2,14 @@
 - name: Deployment in frontend application 
   hosts: frontend
   become: yes
- 
+
 
   tasks:
+    - name: Add host key to known_hosts
+      shell: ssh-keyscan -H {{ ansible_host }} >> ~/.ssh/known_hosts
+      delegate_to: localhost
+      ignore_errors: yes
+      
     - name: Update apt package cache (for Debian/Ubuntu)
       apt:
         update_cache: yes
