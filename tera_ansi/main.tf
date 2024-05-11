@@ -33,10 +33,10 @@ resource "null_resource" "local01" {
 
     provisioner "local-exec" {
         command = <<-EOF
-        echo "[frontend]" > inventory
-        echo "${aws_instance.streaming_frontend.tags.Name} ansible_host=${aws_instance.streaming_frontend.public_ip} ansible_user=ubuntu"  >> inventory
-        echo "[backend]" >> inventory
-        echo "${aws_instance.streaming_backend.tags.Name} ansible_host=${aws_instance.streaming_backend.public_ip} ansible_user=ubuntu" >> inventory
+        /bin/echo "[frontend]" > inventory
+        /bin/echo "${aws_instance.streaming_frontend.tags.Name} ansible_host=${aws_instance.streaming_frontend.public_ip} ansible_user=ubuntu"  >> inventory
+        /bin/echo "[backend]" >> inventory
+        /bin/echo "${aws_instance.streaming_backend.tags.Name} ansible_host=${aws_instance.streaming_backend.public_ip} ansible_user=ubuntu" >> inventory
         EOF
       
     }
