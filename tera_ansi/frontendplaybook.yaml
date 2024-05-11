@@ -47,13 +47,13 @@
 
     - name: Pull Docker image for frontend
       docker_image:
-        name: ${env.DOCKER_IMAGE_FRONTEND}:${env.BUILD_ID}
+        name: flowerking21/streaming_frontend:${docker_image_id}
         source: pull
 
     - name: Run Docker container for frontend
       docker_container:
         name: mycontainer
-        image: ${env.DOCKER_IMAGE_FRONTEND}:${env.BUILD_ID}
+        image: flowerking21/streaming_frontend:${docker_image_id}
         ports:
           - "3000:3000"
         restart_policy: always
