@@ -1,5 +1,5 @@
 ---
-- name: Deployment in frontend application 
+- name: Deployment in backend application 
   hosts: backend
   become: yes
  
@@ -45,15 +45,15 @@
         name: docker
         state: started
 
-    - name: Pull Docker image for frontend
+    - name: Pull Docker image for backend
       docker_image:
-        name: ${env.DOCKER_IMAGE_BACKEND_stream}:${env.BUILD_ID}
+        name: flowerking21/streaming_backend_streamservice:${docker_image_id}
         source: pull
 
-    - name: Run Docker container for frontend
+    - name: Run Docker container for backend
       docker_container:
         name: mycontainer
-        image: ${env.DOCKER_IMAGE_BACKEND_stream}:${env.BUILD_ID}
+        image: flowerking21/streaming_backend_streamservice:${docker_image_id}
         ports:
           - "3002:3002"
         restart_policy: always
