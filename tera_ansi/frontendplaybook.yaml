@@ -2,6 +2,8 @@
 - name: Deployment in frontend application 
   hosts: frontend
   become: yes
+  vars:
+    ansible_python_interpreter:/home/ubuntu/python3
 
 
   tasks:
