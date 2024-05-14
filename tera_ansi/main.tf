@@ -40,6 +40,12 @@ resource "null_resource" "local01" {
         EOF
       
     }
+    provisioner "local-exec" {
+      command = <<-EOF
+      /bin/echo "export let vediosource="http://${aws_instance.streaming_backend.public_ip}:3002/streaming"" > ./frontend/src/url.js
+      EOF
+      
+    }
 
     depends_on = [ aws_instance.streaming_frontend,aws_instance.streaming_backend]
   
