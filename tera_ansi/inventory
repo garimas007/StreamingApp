@@ -1,4 +1,4 @@
 [frontend]
-streaming_frontend ansible_host=3.84.180.232 ansible_user=ubuntu
+streaming_frontend ansible_host=54.224.111.202 ansible_user=ubuntu
 [backend]
-streaming_backend ansible_host=54.224.231.255 ansible_user=ubuntu
+streaming_backend ansible_host=54.89.29.245 ansible_user=ubuntu
