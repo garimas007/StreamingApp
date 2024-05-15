@@ -2,6 +2,9 @@
 - name: Deployment in frontend application 
   hosts: frontend
   become: yes
+  gather_facts: false
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
  
 
   tasks:
