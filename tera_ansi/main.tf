@@ -12,15 +12,13 @@ resource "aws_instance" "streaming_frontend" {
   tags = {
     Name = "streaming_frontend"
   }
-user_data = <<-EOF
+  user_data = <<-EOF
     #!/bin/bash
     apt-get update
     apt-get install -y software-properties-common
     apt-add-repository --yes --update ppa:ansible/ansible
     apt-get install -y ansible
     EOF
-  }
-  
 }
 
 resource "aws_instance" "streaming_backend" {
@@ -38,9 +36,8 @@ resource "aws_instance" "streaming_backend" {
     apt-add-repository --yes --update ppa:ansible/ansible
     apt-get install -y ansible
     EOF
-  }
-  
 }
+  
 
 resource "null_resource" "local01" {
     triggers = {
