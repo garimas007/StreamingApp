@@ -43,6 +43,7 @@ npm start
 * Docker file are updated in specifies folder.
 
 # Jenkins
+Deployment done by docker, run docker image on ec2 instance and test
 
 * Create a jenkins pipeline to build and deploy the application in EC2 instance.
 * make sure updated all the necesssary components for .env file in jenkin secreat file.
@@ -81,4 +82,25 @@ Frontend
 Backend
 ![alt text](pics/image-1.png)
 
-Next need to procede with terraform code to automate the creation of the instances and the configurations.
+-------------------------------
+# Jenkins Terraform pipeline 
+
+* created a jenkins pipeline that created EC2 instance using terraform, updated the EC2 instance ip address in inventory file and pushed the changes to git.
+* Jenkins code is updated in jenkinsfile1
+* Steps that are followed.
+![alt text](pics/jenkins1.PNG)
+
+1. Clone the code from git.
+2. Initiate the terraform command to run main.tf file to create 2 EC2 instance.
+![alt text](pics/ec2_instance.PNG)
+3. Terraform provisioners updated the inventory file and url.js file and then copy the url.js file to frontend folder.
+4. configure git credencials.
+5. push the code back to github, that can be used to dockerize further.
+![alt text](pics/git_output.PNG)
+
+---------------
+* obstacles faced
+
+To established connection between backend and frontend instances, backend ip address need to updated in frontend App.js file, so modified the code that frontend will takes the connection string from url.js file.
+------------
+# Jenkins Ansible pipeline
