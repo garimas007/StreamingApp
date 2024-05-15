@@ -1,1 +1,1 @@
-export let vediosource=http://54.89.186.77:3002/streaming
+export let vediosource=http://52.54.136.155:3002/streaming
