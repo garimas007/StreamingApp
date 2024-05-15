@@ -1,4 +1,4 @@
 [frontend]
-streaming_frontend ansible_host=3.86.53.218 ansible_user=ubuntu ansible_python_interpreter=/usr/bin/python3
+streaming_frontend ansible_host=100.27.231.179 ansible_user=ubuntu
 [backend]
-streaming_backend ansible_host=52.205.58.181 ansible_user=ubuntu
+streaming_backend ansible_host=54.89.186.77 ansible_user=ubuntu
