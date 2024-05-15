@@ -2,31 +2,9 @@
 - name: Deployment in frontend application 
   hosts: frontend
   become: yes
-  vars:
-    ansible_python_interpreter: "/usr/bin/python3"
-
+ 
 
   tasks:
-    - name: Update package cache
-      package_facts:  # Gather facts about available packages
-      register: package_facts_result
-
-    - name: Install Python (if not already installed)
-      package:
-        name: python3
-        state: present
-      when: "'python3' not in package_facts_result.packages"  # Install Python if not already installed
-
-    - name: Install pip for Python package management
-      package:
-        name: python3-pip
-        state: present
-
-    - name: Install required Python packages (e.g., six)
-      pip:
-        name: six
-        state: present
-      
     - name: Update apt package cache (for Debian/Ubuntu)
       apt:
         update_cache: yes
@@ -74,7 +52,7 @@
 
     - name: Run Docker container for frontend
       docker_container:
-        name: mycontainer
+        name: frontend_container
         image: flowerking21/streaming_frontend:87
         ports:
           - "3000:3000"
