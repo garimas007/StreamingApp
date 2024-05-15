@@ -42,7 +42,7 @@ resource "null_resource" "local01" {
     }
     provisioner "local-exec" {
       command = <<-EOF
-      /bin/echo "export let vediosource="http://${aws_instance.streaming_backend.public_ip}:3002/streaming"" > frontend/src/url.js
+      /bin/echo "export let vediosource="http://${aws_instance.streaming_backend.public_ip}:3002/streaming"" > url.js
       EOF
       
     }
