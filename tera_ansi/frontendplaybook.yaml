@@ -7,10 +7,25 @@
 
 
   tasks:
-    - name: Add host key to known_hosts
-      shell: ssh-keyscan -H {{ ansible_host }} >> ~/.ssh/known_hosts
-      delegate_to: localhost
-      ignore_errors: yes
+    - name: Update package cache
+      package_facts:  # Gather facts about available packages
+      register: package_facts_result
+
+    - name: Install Python (if not already installed)
+      package:
+        name: python3
+        state: present
+      when: "'python3' not in package_facts_result.packages"  # Install Python if not already installed
+
+    - name: Install pip for Python package management
+      package:
+        name: python3-pip
+        state: present
+
+    - name: Install required Python packages (e.g., six)
+      pip:
+        name: six
+        state: present
       
     - name: Update apt package cache (for Debian/Ubuntu)
       apt:

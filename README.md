@@ -16,7 +16,7 @@ AWS_REGION='ap-south-1'
 AWS_S3_BUCKET='streamingappservice'
 ```
 -------------------------------------------------------------------------
-# this is poovarasan branch
+# This is poovarasan branch
 
 # local setup
 
@@ -99,8 +99,9 @@ Backend
 ![alt text](pics/git_output.PNG)
 
 ---------------
-* obstacles faced
+# obstacles faced
 
 To established connection between backend and frontend instances, backend ip address need to updated in frontend App.js file, so modified the code that frontend will takes the connection string from url.js file.
+
 ------------
 # Jenkins Ansible pipeline
