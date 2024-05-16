@@ -109,10 +109,15 @@ To established connection between backend and frontend instances, backend ip add
 * Instance ip updated in inventory and url.js file by first jenkins pipeline.
 * Then procede with the deployments using ansible.
 
-* steps follows in pipeline
+* steps follows in pipeline, code updated in jenkinsfile2
+![alt text](pics/ansible_pipeline.PNG)
+
 1. Clone code from github.
 2. Build image with latest changes.
 3. Pushed the image into docker hub.
 4. Deploy the application in instance using ansible-playbook.
+5. Output images are mentioned in pics folder named ansible_frontend and ansible_backend
 
+---------------------
+# NEXT!!!!!!!!!!!!!
 
