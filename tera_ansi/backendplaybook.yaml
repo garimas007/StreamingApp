@@ -2,13 +2,20 @@
 - name: Deployment in backend application 
   hosts: backend
   become: yes
+  gather_facts: true
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
  
 
   tasks:
+   - name: Print gathered facts
+      debug:
+        var: ansible_facts
+        
     - name: Update apt package cache (for Debian/Ubuntu)
       apt:
         update_cache: yes
-      when: ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian'  or ansible_os_family == 'Ubuntu'
 
     - name: Install Docker dependencies
       package:
