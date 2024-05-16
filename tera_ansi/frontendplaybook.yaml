@@ -5,6 +5,7 @@
   gather_facts: true
   vars:
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    docker_image_name: "flowerking21/streaming_frontend:{{ jenkins_build_number }}"
  
 
   tasks:
@@ -58,13 +59,14 @@
 
     - name: Pull Docker image for frontend
       docker_image:
-        name: flowerking21/streaming_frontend:87
+        name: "{{ docker_image_name }}"
         source: pull
+      register: docker_pull_result
 
     - name: Run Docker container for frontend
       docker_container:
-        name: frontend_container
-        image: flowerking21/streaming_frontend:87
+        name: mycontainer
+        image: "{{ docker_image_name }}"
         ports:
           - "3000:3000"
         restart_policy: always

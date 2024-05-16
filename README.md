@@ -105,3 +105,7 @@ To established connection between backend and frontend instances, backend ip add
 
 ------------
 # Jenkins Ansible pipeline
+
+* Instance ip updated in inventory and url.js file by first jenkins pipeline.
+* then procede with the deployments using ansible.
+
