@@ -19,9 +19,10 @@ AWS_S3_BUCKET='streamingappservice'
 # Project: DevOps Pipeline for MERN Stack Streaming Application
 
 **Problem Statement:**
+
 The objective is to develop a robust DevOps pipeline for a streaming application built on the MERN stack (MongoDB, Express.js, React, Node.js), where videos are uploaded to an AWS S3 bucket. This project encompasses the creation of a multi-stage Docker image for the application, ensuring scalability, security, monitoring, and efficient deployment strategies including blue-green deployments. The infrastructure automation will be managed using Terraform, while the database will be configured to run on-premise (locally on the learner's laptop). The project will also implement GitOps practices for continuous deployment, maintaining separate environments for staging, development, and production.
 
-** Goals and Deliverables:**
+**Goals and Deliverables:**
 
 1. Infrastructure as Code (IaC):
    - Use Terraform to provision and manage AWS cloud resources, including S3 buckets for video storage, EC2 instances for hosting the application, and necessary networking components.
