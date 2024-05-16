@@ -9,8 +9,8 @@
 
   tasks:
    - name: Print gathered facts
-      debug:
-        var: ansible_facts
+     debug:
+       var: ansible_facts
         
     - name: Update apt package cache (for Debian/Ubuntu)
       apt:
