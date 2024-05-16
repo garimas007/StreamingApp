@@ -7,14 +7,10 @@ pipeline {
         MONGO_URL=credentials('MONGO_URL')
         AWS_S3_BUCKET=credentials('AWS_S3_BUCKET')
         DOCKER_HUB_CREDENTIALS= 'docker-hub-credencials'
-        SSH_KEY = credentials('ssh_key')
         DOCKER_IMAGE_FRONTEND = 'flowerking21/streaming_frontend'
         DOCKER_IMAGE_BACKEND_stream = 'flowerking21/streaming_backend_streamservice'
-        FRONTEND_IP = '54.162.180.237'
-        BACKEND_IP= '54.198.115.104'
         EC2_USER='ubuntu'
-        
-       
+        SSH_KEY = credentials('ssh_key')
     }
 
     stages {
@@ -47,12 +43,12 @@ pipeline {
             }
         }
         
-        stage('build images') {
+         stage('build images') {
             parallel {
                 stage('build backend') {
                     steps {
                         script {
-                            docker.build("${env.DOCKER_IMAGE_BACKEND_stream}:${env.BUILD_ID}", './backend/streamingService/')
+                           docker.build("${env.DOCKER_IMAGE_BACKEND_stream}:${env.BUILD_ID}", './backend/streamingService/')
                             echo ("done")
                         }
                     }
@@ -80,39 +76,53 @@ pipeline {
             }
         }
         
-        stage('deploy application') {
-            parallel {
-                stage('Deploy Frontend Docker Image') {
+        
+        stage('frontend deployment') {
                     steps {
                         script {
-                            sshagent(credentials:['${SSH_KEY}']) {
-                              sh "ssh  -i ${SSH_KEY} ${EC2_USER}@${FRONTEND_IP} docker pull ${DOCKER_IMAGE_FRONTEND}:${env.BUILD_ID}"
-                              sh "ssh -i ${SSH_KEY} ${EC2_USER}@${FRONTEND_IP}  docker run -d --name mycontainer -p 3000:3000 ${DOCKER_IMAGE_FRONTEND}:${env.BUILD_ID}"
-                        
+                            
+                             dir('tera_ansi') {
+                                 sh "ls -la"
+                                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                                     // Set appropriate permissions on SSH key file
+                                        sh "echo \"$SSH_PRIVATE_KEY\" > ssh_key"
+                                        sh "chmod 600 ssh_key"
+
+                                 ansiblePlaybook(
+                                    playbook: 'frontendplaybook.yaml',
+                                    inventory: 'inventory',
+                                    credentialsId: 'ssh_key',
+                                    extras: "-e 'ansible_python_interpreter=/usr/bin/python3 -e jenkins_build_number=${env.BUILD_ID}'"
+                                )
+                                 }
                             }
-                            }
-                    }
-                }
-                stage('Deploy Backend Docker Image') {
-                    steps {
-                        script {
-                            sshagent(credentials:['${SSH_KEY}']) {
-                                sh "ssh -i  **** -o StrictHostKeyChecking=no ${SSH_KEY} ${EC2_USER}@${BACKEND_IP} docker pull ${DOCKER_IMAGE_BACKEND_stream}:${env.BUILD_ID}"
-                                sh "ssh -i ${SSH_KEY} ${EC2_USER}@${BACKEND_IP}  docker run -d --name mycontainer -p 3002:3002 ${DOCKER_IMAGE_BACKEND_stream }:${env.BUILD_ID}"
-                
-                            }
+                            
                         }
                     }
-                }
-            }
         }
-        
-        
-        
-        
-        
-        
-        
-        
+        stage('backend deployment') {
+                    steps {
+                        script {
+                            
+                             dir('tera_ansi') {
+                                 sh "ls -la"
+                                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh_key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                                     // Set appropriate permissions on SSH key file
+                                        sh "echo \"$SSH_PRIVATE_KEY\" > ssh_key"
+                                        sh "chmod 600 ssh_key"
+
+                                 ansiblePlaybook(
+                                    playbook: 'backendplaybook.yaml',
+                                    inventory: 'inventory',
+                                    credentialsId: 'ssh_key',
+                                    extras: "-e 'ansible_python_interpreter=/usr/bin/python3 -e jenkins_build_number=${env.BUILD_ID}'"
+                                )
+                                 }
+                            }
+                            
+                        }
+                    }
+        }
+                    
     }
 }
