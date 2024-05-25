@@ -10,10 +10,10 @@ To tackle lag in streaming using AWS Elemental with a Node.js streaming app, one
     Tip #3 Enable Network Adaptive Encoding
           In a perfect world, network congestion would never be an issue, but unfortunately, such limitations still exist. IP networks, especially the public     internet, can be unreliable. Whenever there’s a possibility that your bandwidth is not guaranteed, you should consider using Network Adaptive Encoding (NAE) if supported by your encoder.
 
-  Tip #4 Don’t Forget Audio
+    Tip #4 Don’t Forget Audio
         When calculating bitrate for your video stream, don’t forget to include audio. Although not as intensive as video, audio bitrates can quickly add up   especially when including multiple audio channels.
 
-  Tip #5 Leverage the Power of SRT
+    Tip #5 Leverage the Power of SRT
         Pioneered by Haivision, Secure Reliable Transport (SRT) is an open-source, low latency transport protocol that optimizes streaming performance across   “noisy”, unpredictable networks such as the public internet.                                                                                                                         
 2. Content Delivery Network (CDN): Utilize AWS Elemental MediaPackage along with AWS CloudFront or another CDN to cache and deliver oner streaming content closer to oner viewers. This helps reduce latency by serving content from edge locations geographically closer to the viewer.
 
