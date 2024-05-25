@@ -56,7 +56,7 @@ The objective is to develop a robust DevOps pipeline for a streaming application
 Firstly create a .env file for backend. Then to run the project,
 
 **Backend**
-cd backend
+cd backend/streamingService
 npm i
 node index.js
 
