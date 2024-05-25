@@ -53,5 +53,16 @@ The objective is to develop a robust DevOps pipeline for a streaming application
 ----------------------------------------------------------------
 # Local setup
 
+Firstly create a .env file for backend. Then to run the project,
+
+**Backend**
+cd backend
+npm i
+node index.js
+
+**Frontend**
+cd frontend
+npm i
+npm start
 
 Prajjwal's Branch
