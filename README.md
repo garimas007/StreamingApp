@@ -60,9 +60,51 @@ cd backend/streamingService
 npm i
 node index.js
 
+Create a .env file in this folder containing all the necessary details
+
 **Frontend**
 cd frontend
 npm i
 npm start
+
+# Docker files
+
+**Backend**
+
+Create a Dockerfile in the streamingService directory and add the following lines:
+
+FROM node:20
+WORKDIR /app
+COPY . .
+RUN npm install
+EXPOSE 3001
+CMD [ "node","index.js" ]
+
+Now build using:
+
+docker build -t <image_name> .
+
+Run the image using:
+
+docker run -it -d -p <host_port>:3001 <image_name>
+
+**Frontend**
+
+Create a Dockerfile in the frontend directory and add the following lines:
+
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD [ "npm", "start" ]
+
+Now build image:
+
+docker build -t <image_name> .
+
+Run the container by:
+
+docker run -it -d -p <host_port>:3000 <image_name>
 
 Prajjwal's Branch
