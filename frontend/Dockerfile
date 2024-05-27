@@ -10,5 +10,8 @@ COPY . .
 # Install dependencies
 RUN npm Install
 
+# Expose port
+EXPOSE 3000
+
 # Start the frontend
 CMD [ "npm", "start" ]
