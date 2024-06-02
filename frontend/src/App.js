@@ -7,7 +7,7 @@ function App() {
     <div className="App">
     <h1>HotPrimeFlix</h1>
      <video id="videoPlayer" width="70%" controls muted="muted" autoplay>
-            <source src={vediosource} type="video/mp4" />
+            <source src="http://stream.flowerking.shop:3002/streaming"  type="video/mp4" />
         </video>
     </div>
   );
