@@ -15,3 +15,5 @@ AWS_SECRET_KEY='adsafsasfdafs'
 AWS_REGION='ap-south-1'
 AWS_S3_BUCKET='streamingappservice'
 ```
+### Architechture
+![Capstone](https://github.com/garimas007/StreamingApp/assets/146625788/0367edd5-e826-46ce-935f-07b5dce1d562)
