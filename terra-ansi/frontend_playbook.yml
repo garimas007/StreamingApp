@@ -1,0 +1,5 @@
+---
+- name: Deployment of frontend application
+  hosts: frontend
+  become: yes
+  gather_facts: true

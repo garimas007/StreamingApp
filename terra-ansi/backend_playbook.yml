@@ -1,0 +1,11 @@
+---
+- name: Deployment of backend application
+  hosts: backend
+  become: yes
+  gather_facts: true
+  vars: 
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    docker_image_name: 'repo_name/image_name: {{ tag_name }}'
+
+  tasks:
+    - name: Print gathered facts
