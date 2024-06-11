@@ -1,0 +1,7 @@
+---
+- name: Deployment of backend application
+  hosts: backend
+  become: yes
+  gather_facts: true
+  vars: 
+    
