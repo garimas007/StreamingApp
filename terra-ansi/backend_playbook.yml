@@ -1,11 +1,17 @@
 ---
 - name: Deployment of backend application
   hosts: backend
-  become: yes
+  become: yes               # Become super user to run commands
   gather_facts: true
   vars: 
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     docker_image_name: 'repo_name/image_name: {{ tag_name }}'
+    dependencies:
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - apt-transport-https
+          - software-properties-common
 
   tasks:
     - name: Print gathered facts
@@ -23,15 +29,8 @@
       when: ansible_os_family == 'Debian' or ansible_os_family == 'Ubuntu' 
 
     - name: Install dependencies and packages
-      vars:
-        dependencies:
-          - ca-certificates
-          - curl
-          - gnupg-agent
-          - apt-transport-https
-          - software-properties-common
       apt:
-        name: {{ dependencies }}
+        name: "{{ dependencies }}"
         state: present
       when: ansible_os_family == 'Debian'
 
@@ -57,3 +56,16 @@
         name: docker
         state: started
         enabled: yes
+
+    - name: Pull docker image
+      docker_image:
+        name: "{{ docker_image_name }}"
+        state: present
+
+    - name: Run the container from the pulled image
+      docker_conatiner:
+        name: my-backend
+        image: "{{ docker_image_name }}"
+        ports:
+          - "3002:3002"
+        restart_policy: always
