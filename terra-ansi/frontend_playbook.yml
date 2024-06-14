@@ -3,3 +3,69 @@
   hosts: frontend
   become: yes
   gather_facts: true
+  vars: 
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    docker_image_name: 'repo_name/image_name: {{ tag_name }}'
+    dependencies:
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - apt-transport-https
+          - software-properties-common
+
+  tasks:
+    - name: Print gathered facts
+      debug:  # Prints the information
+        msg="Ansible facts about target system"
+        ansible_facts
+
+    - name: Print OS of the system
+      debug:
+        ansible_os_family
+
+    - name: Update apt repositories cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian' or ansible_os_family == 'Ubuntu' 
+
+    - name: Install dependencies and packages
+      apt:
+        name: "{{ dependencies }}"
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+      when: ansible_os_family == 'Debian'
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull docker image
+      docker_image:
+        name: "{{ docker_image_name }}"
+        state: present
+
+    - name: Run the container from the pulled image
+      docker_conatiner:
+        name: my-frontend
+        image: "{{ docker_image_name }}"
+        ports:
+          - "3002:3002"
+        restart_policy: always
