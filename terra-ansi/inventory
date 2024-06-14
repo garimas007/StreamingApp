@@ -1,0 +1,7 @@
+# Update according to your needs
+
+[frontend]
+streaming_frontend  ansible_host=10.0.10.0  ansible_user=ubuntu
+
+[backend]
+streaming_backend   ansible_host=10.0.10.0  ansible_user=ubuntu
