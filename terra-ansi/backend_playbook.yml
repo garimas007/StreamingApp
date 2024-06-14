@@ -67,5 +67,5 @@
         name: my-backend
         image: "{{ docker_image_name }}"
         ports:
-          - "3002:3002"
+          - "3001:3001"
         restart_policy: always
