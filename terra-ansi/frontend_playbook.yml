@@ -67,5 +67,5 @@
         name: my-frontend
         image: "{{ docker_image_name }}"
         ports:
-          - "3002:3002"
+          - "3000:3000"
         restart_policy: always
