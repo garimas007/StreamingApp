@@ -1,0 +1,20 @@
+pipeline {
+
+    agent any
+    environment {
+        AWS_KEY = ''
+        AWS_SECRET_KEY = ''
+        AWS_SECRET_ACCESS_KEY = ''
+        GIT_REPO_URL = ''
+        SSH_KEY = ''
+    }
+
+    stages {
+        
+        stage('Hello World') {
+            steps {
+                echo "Hello from outside"
+            }
+        }
+    }
+}
