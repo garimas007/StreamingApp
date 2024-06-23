@@ -13,7 +13,13 @@ pipeline {
         
         stage('Hello World') {
             steps {
-                echo "Hello from outside"
+                echo "Hello from inside"
+            }
+        }
+
+        stage('Pull the code') {
+            steps {
+
             }
         }
     }
