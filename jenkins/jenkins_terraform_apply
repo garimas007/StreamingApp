@@ -1,10 +1,14 @@
 pipeline {
 
     agent any
+    
     environment {
         AWS_KEY = ''
         AWS_SECRET_KEY = ''
         AWS_SECRET_ACCESS_KEY = ''
+        DOCKER_HUB_CREDENTIALS = ''
+        DOCKER_IMAGE_FRONTEND = ''
+        DOCKER_IMAGE_BACKEND_STREAM = ''
         GIT_REPO_URL = ''
         SSH_KEY = ''
     }

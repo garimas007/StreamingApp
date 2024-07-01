@@ -1,6 +1,7 @@
 pipeline {
 
     agent any
+    
     environment {
         AWS_KEY = ''
         AWS_SECRET_KEY = ''
@@ -10,11 +11,25 @@ pipeline {
     }
 
     stages {
-        
         stage('Hello World') {
             steps {
                 echo "Hello from outside"
             }
         }
+
+        stage('Code CHECKOUT') {
+            steps {
+                echo "cloning code base"
+                git branch: 'praj', url:'https://github.com/garimas007/StreamingApp.git'
+            }
+        }
+
+        stage('Setting up git') {
+            steps {
+
+            }
+        }
+
+
     }
 }
