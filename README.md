@@ -53,3 +53,4 @@ The objective is to develop a robust DevOps pipeline for a streaming application
 ## Monitoring
 
 ![Prometheus](https://github.com/garimas007/StreamingApp/blob/nikhil/graph.jpeg)
+https://github.com/garimas007/StreamingApp/blob/nikhil/Metrics.jpeg
