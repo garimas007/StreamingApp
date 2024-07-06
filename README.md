@@ -50,4 +50,6 @@ The objective is to develop a robust DevOps pipeline for a streaming application
    - Ensure the application is scalable, utilizing AWS Auto Scaling Groups to handle varying loads.
    - Automate the backup process for the S3 bucket and on-premise MongoDB database, including periodic backups and secure storage of backup data.
 
+## Monitoring
 
+![Prometheus](https://github.com/garimas007/StreamingApp/blob/nikhil/graph.jpeg)
