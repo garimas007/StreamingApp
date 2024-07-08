@@ -52,6 +52,9 @@ The objective is to develop a robust DevOps pipeline for a streaming application
 ---------------------------------------------------------------------------------------
 # **SOLUTION**
 
+# Architecture
+![alt text](Capstone.png)
+
 # local setup
 
 * create a .env in each services that contains all the details mentioned above.
