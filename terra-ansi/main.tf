@@ -27,12 +27,22 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "frontend" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.INSTANCE_TYPE
   key_name      = "New-key"
 
   tags = {
     Name = "Streaming frontend"
+  }
+}
+
+resource "aws_instance" "backend" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.INSTANCE_TYPE
+  key_name      = "New-key"
+
+  tags = {
+    Name = "Streaming backend"
   }
 }
